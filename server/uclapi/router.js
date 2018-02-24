@@ -32,6 +32,10 @@ module.exports = app => {
     ctx.body = res.body;
   });
 
+  router.get("/workspaces/seatsummaries/:ids", jwt, async ctx => {
+    ctx.body = await getSeatingInfo(process.env.UCLAPI_TOKEN, ctx.params.ids);
+  });
+
   router.get("/workspaces/:id/seatinfo", jwt, async ctx => {
     ctx.assert(ctx.params.id, 400);
     ctx.body = await getSeatingInfo(process.env.UCLAPI_TOKEN, ctx.params.id);

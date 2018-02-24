@@ -38,9 +38,16 @@ const getSeatingInfo = async (token, surveyId) => {
     { occupied: 0, total: 0 },
   );
 };
+const getSeatingSummaries = async (token, surveyIds) => {
+  const data = await JSONRequest(
+    `${WORKSPACE_SENSORS_SUMMARY_URL}?token=${token}&survey_ids=${surveyIds}`,
+  );
+  return data;
+};
 
 module.exports = {
   getWorkspaces,
   getImage,
   getSeatingInfo,
+  getSeatingSummaries,
 };
